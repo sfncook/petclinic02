@@ -22,12 +22,11 @@ public class OwnerController {
     private OwnerRepository ownerRepository;
 
     @RequestMapping(value = {"","/"}, method = RequestMethod.GET, consumes = "application/json", produces="application/json")
-    public ResponseEntity<Owner> getAll() {
+    public ResponseEntity<List<Owner>> getAll() {
         List<Owner> owners = new ArrayList<Owner>();
         for(Owner owner : ownerRepository.findAll()) {
             owners.add(owner);
         }
-//        return owners;
-        return new ResponseEntity<Owner>(owners.get(0), HttpStatus.OK);
+        return new ResponseEntity<>(owners, HttpStatus.OK);
     }
 }
