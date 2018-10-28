@@ -19,10 +19,15 @@ public class Appointment {
     private Long id;
 
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private java.util.Date utilTime;
+    private java.util.Date time;
 
     @ManyToOne
     @Getter
     @Setter
     private Pet pet;
+
+    @ManyToOne
+    @Getter
+    @Setter
+    private Vet vet;
 }
