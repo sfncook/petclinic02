@@ -30,9 +30,10 @@ insert into VET
   ;
 
 insert into APPOINTMENT
-  (id, time, pet_id, vet_id)
+  (id, start_time, end_time, pet_id, vet_id)
   values
-  (3000, '2018-10-28 23:59:59 UTC', 1000, 4000)
+  (5000, '2018-10-28 12:00:00 UTC', '2018-10-28 13:00:00 UTC', 1000, 4000),
+  (5001, '2018-10-28 13:00:00 UTC', '2018-10-28 14:00:00 UTC', 1001, 4001),
   ;
 
 

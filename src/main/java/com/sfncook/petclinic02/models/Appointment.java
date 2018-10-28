@@ -19,7 +19,10 @@ public class Appointment {
     private Long id;
 
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private java.util.Date time;
+    private java.util.Date startTime;
+
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private java.util.Date endTime;
 
     @ManyToOne
     @Getter
