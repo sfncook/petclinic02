@@ -20,7 +20,7 @@ public class PetController {
         this.petRepository = petRepository;
     }
 
-    @RequestMapping(value = {"","/"}, method = RequestMethod.GET, consumes = "application/json", produces="application/json")
+    @RequestMapping(value = {"","/"}, method = RequestMethod.GET, produces="application/json")
     public ResponseEntity<List<Pet>> getAll() {
         List<Pet> pets = new ArrayList<>();
         for(Pet pet : petRepository.findAll()) {
