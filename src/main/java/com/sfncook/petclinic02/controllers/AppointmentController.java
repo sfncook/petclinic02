@@ -31,7 +31,12 @@ public class AppointmentController {
     }
 
     @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json", produces="application/json")
-    public ResponseEntity<Appointment> create(@RequestBody Appointment appointment) {
+    public ResponseEntity create(@RequestBody Appointment appointment) {
+        List<Appointment> apptForVetAndTime = appointmentRepository.findApptForVetAndTime(appointment.getVet().getId(), appointment.getStartTime(), appointment.getEndTime());
+        if(!apptForVetAndTime.isEmpty()) {
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+        }
+
         appointment.setId(null); // Necessary so repo doesn't think we're trying to *update* an obj
         Appointment rsp = appointmentRepository.save(appointment);
         return new ResponseEntity<>(rsp, HttpStatus.OK);
