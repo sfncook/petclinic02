@@ -18,9 +18,13 @@ public class Appointment {
     @Setter
     private Long id;
 
+    @Getter
+    @Setter
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private java.util.Date startTime;
 
+    @Getter
+    @Setter
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private java.util.Date endTime;
 

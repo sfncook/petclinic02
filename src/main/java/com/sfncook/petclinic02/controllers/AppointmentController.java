@@ -1,6 +1,7 @@
 package com.sfncook.petclinic02.controllers;
 
 import com.sfncook.petclinic02.models.Appointment;
+import com.sfncook.petclinic02.models.Vet;
 import com.sfncook.petclinic02.repositories.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
