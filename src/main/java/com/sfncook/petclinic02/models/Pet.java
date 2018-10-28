@@ -17,4 +17,16 @@ public class Pet {
     private String name;
     @Enumerated(EnumType.STRING)
     private Species species;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Species getSpecies() {
+        return species;
+    }
 }

@@ -20,4 +20,15 @@ public class Owner {
     )
     private List<Pet> pets = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
 }
