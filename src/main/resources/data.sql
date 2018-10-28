@@ -16,4 +16,8 @@ insert into OWNER_PETS values
   (2001, 1002),
   ;
 
+insert into APPOINTMENT values
+  (3000, '2018-10-28 23:59:59 UTC'),
+  ;
+
 
