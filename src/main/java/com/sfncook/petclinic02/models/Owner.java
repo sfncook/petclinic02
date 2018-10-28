@@ -1,8 +1,12 @@
 package com.sfncook.petclinic02.models;
 
-import org.hibernate.mapping.Collection;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,33 +15,17 @@ public class Owner {
 
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private Long id;
+
+    @Getter
+    @Setter
     private String name;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany
+    @Getter
+    @Setter
     private List<Pet> pets = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Pet> getPets() {
-        return pets;
-    }
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }
 }
