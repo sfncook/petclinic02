@@ -4,11 +4,9 @@ import com.sfncook.petclinic02.models.Owner;
 import com.sfncook.petclinic02.repositories.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +26,12 @@ public class OwnerController {
             owners.add(owner);
         }
         return new ResponseEntity<>(owners, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json", produces="application/json")
+    public ResponseEntity<Owner> create(@RequestBody Owner newOwner) {
+        newOwner.setId(null); // Necessary so repo doesn't think we're trying to *update* an obj
+        Owner owner = ownerRepository.save(newOwner);
+        return new ResponseEntity<>(owner, HttpStatus.OK);
     }
 }
