@@ -29,6 +29,7 @@ public class PetController {
         return new ResponseEntity<>(pets, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json", produces="application/json")
     public ResponseEntity<Pet> create(@RequestBody Pet pet) {
         pet.setId(null); // Necessary so repo doesn't think we're trying to *update* an obj
@@ -36,18 +37,21 @@ public class PetController {
         return new ResponseEntity<>(rsp, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.PUT, consumes = "application/json", produces="application/json")
     public ResponseEntity<Pet> update(@RequestBody Pet pet) {
         Pet rsp = petRepository.save(pet);
         return new ResponseEntity<>(rsp, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.DELETE, consumes = "application/json")
     public ResponseEntity delete(@RequestBody Pet pet) {
         petRepository.delete(pet);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"{id:[\\d]+}","/{id:[\\d]+}"}, method = RequestMethod.DELETE)
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
         petRepository.deleteById(id);

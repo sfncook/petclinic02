@@ -30,6 +30,7 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json", produces="application/json")
     public ResponseEntity create(@RequestBody Appointment appointment) {
         List<Appointment> apptForVetAndTime = appointmentRepository.findApptForVetAndTime(appointment.getVet().getId(), appointment.getStartTime(), appointment.getEndTime());
@@ -42,18 +43,21 @@ public class AppointmentController {
         return new ResponseEntity<>(rsp, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.PUT, consumes = "application/json", produces="application/json")
     public ResponseEntity<Appointment> update(@RequestBody Appointment appointment) {
         Appointment rsp = appointmentRepository.save(appointment);
         return new ResponseEntity<>(rsp, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.DELETE, consumes = "application/json")
     public ResponseEntity delete(@RequestBody Appointment appointment) {
         appointmentRepository.delete(appointment);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = {"{id:[\\d]+}","/{id:[\\d]+}"}, method = RequestMethod.DELETE)
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
         appointmentRepository.deleteById(id);
