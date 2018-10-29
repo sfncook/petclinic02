@@ -23,3 +23,6 @@ Once service is up and running you can send requests to it like this:
 ```console
 $ curl -X GET http://localhost:8080/appointments -H 'Content-Type: application/json'
 ```
+
+## Explanation of Project
+This project was initialized using [start.spring.io](https://start.spring.io/).  It uses Gradle, Spring Boot, an H2 in-memory SQL database (so data does not persist between runs), Hibernate for the JPA ORM, and Lombok for annotation pre-procession and code generation.
