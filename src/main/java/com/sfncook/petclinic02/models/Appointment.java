@@ -21,12 +21,12 @@ public class Appointment {
 
     @Getter
     @Setter
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss", timezone = "America/Los_Angeles")
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Los_Angeles")
     private Date startTime;
 
     @Getter
     @Setter
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss", timezone = "America/Los_Angeles")
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Los_Angeles")
     private Date endTime;
 
     @ManyToOne
