@@ -36,27 +36,32 @@ public class AppointmentController {
     @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = "application/json", produces="application/json")
     public ResponseEntity create(@RequestBody Appointment appointment) {
-        List<Appointment> apptForVetAndTime = appointmentRepository.findApptForVetAndTime(appointment.getVet().getId(), appointment.getStartTime(), appointment.getEndTime());
-        if(!apptForVetAndTime.isEmpty()) {
-            return new ResponseEntity<>("Appointment conflicts with other appointments for that vet.", HttpStatus.BAD_REQUEST);
+        try {
+            if (apptValidator.isApptTimeValid(appointment)) {
+                appointment.setId(null); // Necessary so repo doesn't think we're trying to *update* an obj
+                Appointment rsp = appointmentRepository.save(appointment);
+                return new ResponseEntity<>(rsp, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Appointment time is invalid.", HttpStatus.BAD_REQUEST);
+            }
+        } catch(AppointmentValidator.AppointmentValidationException e) {
+            System.out.println("time error:"+e.getErrorMessage());
+            return new ResponseEntity<>(e.getErrorMessage(), HttpStatus.BAD_REQUEST);
         }
-
-        appointment.setId(null); // Necessary so repo doesn't think we're trying to *update* an obj
-        Appointment rsp = appointmentRepository.save(appointment);
-        return new ResponseEntity<>(rsp, HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(value = {"","/"}, method = RequestMethod.PUT, consumes = "application/json", produces="application/json")
     public ResponseEntity update(@RequestBody Appointment appointment) {
         try {
-            if (apptValidator.isApptTimeValid(appointment.getStartTime(), appointment.getEndTime())) {
+            if (apptValidator.isApptTimeValid(appointment)) {
                 Appointment rsp = appointmentRepository.save(appointment);
                 return new ResponseEntity<>(rsp, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Appointment time is invalid.  Vet is only open M-F 8a-5pm.", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("Appointment time is invalid.", HttpStatus.BAD_REQUEST);
             }
         } catch(AppointmentValidator.AppointmentValidationException e) {
+            System.out.println("time error:"+e.getErrorMessage());
             return new ResponseEntity<>(e.getErrorMessage(), HttpStatus.BAD_REQUEST);
         }
     }
