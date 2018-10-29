@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Entity
 public class Appointment {
@@ -21,12 +22,12 @@ public class Appointment {
     @Getter
     @Setter
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss", timezone = "America/Los_Angeles")
-    private java.util.Date startTime;
+    private Date startTime;
 
     @Getter
     @Setter
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss", timezone = "America/Los_Angeles")
-    private java.util.Date endTime;
+    private Date endTime;
 
     @ManyToOne
     @Getter
